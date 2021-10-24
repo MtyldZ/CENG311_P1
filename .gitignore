@@ -1,0 +1,7 @@
+*.txt
+*.class
+
+!input-20.txt
+!input-mini.txt
+
+main_compiled
