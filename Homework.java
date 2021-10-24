@@ -22,13 +22,11 @@ public class Homework {
             File file = new File(filePath);
             Scanner reader = new Scanner(file);
             System.out.println("Starting The file reading process... name: " + filePath);
-            while (reader.hasNextLine()) {
-                String[] data = reader.nextLine().split(" ");
+            while (reader.hasNext()) {
+                String data = reader.next();
                 
-                for (String token : data) {
-                    values[length] = Integer.parseInt(token);
-                    length++;
-                }
+            	values[length] = Integer.parseInt(data);
+                length++;
             }
             System.out.println("Finishing The file reading process...");
             reader.close();

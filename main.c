@@ -10,22 +10,13 @@ FILE *fp;
 void printArray(int *arr) {
     printf("[");
     for (int i = 0; i < INPUT_COUNT; i++) {
-        printf("%3d%s", arr[i],
-               i < INPUT_COUNT - 1 ? "," : "");
+        printf("%3d%s", arr[i], i < INPUT_COUNT - 1 ? "," : "");
     }
     printf("]\n");
 }
 
-int getLeftChildIndex(int number) {
-    return 2 * number + 1;
-}
-
-int getRightChildIndex(int number) {
-    return 2 * number + 2;
-}
-
 void swap(int *pVal1, int *pVal2) {
-    const int temp = *pVal1;
+    int temp = *pVal1;
     *pVal1 = *pVal2;
     *pVal2 = temp;
 }
@@ -82,10 +73,10 @@ struct Node *createNode(int *dataArray, const int index) {
     struct Node *node = NULL;
     node = calloc(1, sizeof(struct Node));
     node->data = dataArray[index];
-    node->left = getLeftChildIndex(index) < INPUT_COUNT ?
-                 createNode(dataArray, getLeftChildIndex(index)) : NULL;
-    node->right = getRightChildIndex(index) < INPUT_COUNT ?
-                  createNode(dataArray, getRightChildIndex(index)) : NULL;
+    node->left = 2 * index + 1 < INPUT_COUNT ?
+                 createNode(dataArray, 2 * index + 1) : NULL;
+    node->right = 2 * index + 2 < INPUT_COUNT ?
+                  createNode(dataArray, 2 * index + 2) : NULL;
     return node;
 }
 
