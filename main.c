@@ -16,10 +16,6 @@ void printArray(int *arr) {
     printf("]\n");
 }
 
-int getParentIndex(int number) {
-    return (number - 1) / 2;
-}
-
 int getLeftChildIndex(int number) {
     return 2 * number + 1;
 }
@@ -42,7 +38,7 @@ int *getValuesFromFile() {
 
     int *valueArray = malloc(LIMIT * sizeof(int));
 
-    const char fileName[] = "input-20.txt";
+    const char fileName[] = "input-2^26.txt";
     fp = fopen(fileName, "r");
     printf("Reading file... name '%s'\n", fileName);
     if (fp == NULL) {
@@ -70,9 +66,9 @@ void queue(int *arr, int value, int index) {
     arr[index] = value;
 
     int i = index;
-    while (i != 0 && arr[getParentIndex(i)] < arr[i]) {
-        swap(&arr[getParentIndex(i)], &arr[i]);
-        i = getParentIndex(i);
+    while (i != 0 && arr[(i - 1) / 2] < arr[i]) {
+        swap(&arr[(i - 1) / 2], &arr[i]);
+        i = (i - 1) / 2;
     }
 }
 
@@ -155,11 +151,15 @@ int main() {
 //    printArray(heapArray);
 
     // 3) Convert your array representation into a data structure with pointers.
+    printf("Starting The Create Node process...\n");
     struct Node *pNode = createNode(heapArray, 0);
+    printf("Finishing The Create Node process...\n");
 
     // 4) Traverse the structure, save your array in a text file.
     fp = fopen("result.txt", "w");
+    printf("Starting The Write to File process... traversing trough nodes\n");
     traverseNode(pNode, writeToFile);
+    printf("Finishing The Write to File process...\n");
     fclose(fp);
     fp = NULL;
 

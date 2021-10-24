@@ -17,10 +17,11 @@ public class Homework {
     }
 
     public static void main(String[] args) {
-    	String filePath = "input-20.txt";
+    	String filePath = "input-2^26.txt";
         try {
             File file = new File(filePath);
             Scanner reader = new Scanner(file);
+            System.out.println("Starting The file reading process... name: " + filePath);
             while (reader.hasNextLine()) {
                 String[] data = reader.nextLine().split(" ");
                 
@@ -29,6 +30,7 @@ public class Homework {
                     length++;
                 }
             }
+            System.out.println("Finishing The file reading process...");
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.printf("An error occurred. Name: " + filePath);
