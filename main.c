@@ -29,7 +29,7 @@ int *getValuesFromFile() {
 
     int *valueArray = malloc(LIMIT * sizeof(int));
 
-    const char fileName[] = "input-2^26.txt";
+    const char fileName[] = "input-20.txt";
     fp = fopen(fileName, "r");
     printf("Reading file... name '%s'\n", fileName);
     if (fp == NULL) {
@@ -156,5 +156,6 @@ int main() {
 
     free(values);
     free(heapArray);
+    printf("main.c process finished. \n\n");
     return 0;
 }

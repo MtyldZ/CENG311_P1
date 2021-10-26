@@ -17,7 +17,7 @@ public class Homework {
     }
 
     public static void main(String[] args) {
-    	String filePath = "input-2^26.txt";
+    	String filePath = "input-20.txt";
         try {
             File file = new File(filePath);
             Scanner reader = new Scanner(file);
@@ -39,7 +39,8 @@ public class Homework {
         queue(values);
         double stopTime = (new Date()).getTime();
         System.out.println("Finishing The Queue process...");
-        System.out.printf("Queue process is done. Time spent " + String.format("%.9f", (stopTime - startTime) / 1000.0) + " seconds.");
+        System.out.printf("Queue process is done. Time spent " + String.format("%.9f", (stopTime - startTime) / 1000.0) + " seconds.\n");
+        System.out.println("homework.java process finished. \n");
 
     }
 }
