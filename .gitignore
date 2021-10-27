@@ -1,5 +1,6 @@
 *.txt
 *.class
+.DS_STORE
 
 !input-20.txt
 !input-mini.txt

@@ -17,7 +17,7 @@ public class Homework {
     }
 
     public static void main(String[] args) {
-    	String filePath = "input-20.txt";
+    	String filePath = "input-2^28.txt";
         try {
             File file = new File(filePath);
             Scanner reader = new Scanner(file);

@@ -47,19 +47,21 @@ int *getValuesFromFile() {
     fclose(fp);
     fp = NULL;
 
-//    printf("A=");
-//    printArray(valueArray);
+    //printf("A=");
+    //printArray(valueArray);
 
     return valueArray;
 }
 
-void queue(int *arr, int value, int index) {
-    arr[index] = value;
+void convert(int *arr, int *values) {
+    for (int index = 0; index < INPUT_COUNT; index++) {
+        arr[index] = values[index];
 
-    int i = index;
-    while (i != 0 && arr[(i - 1) / 2] < arr[i]) {
-        swap(&arr[(i - 1) / 2], &arr[i]);
-        i = (i - 1) / 2;
+        int i = index;
+        while (i != 0 && arr[(i - 1) / 2] < arr[i]) {
+            swap(&arr[(i - 1) / 2], &arr[i]);
+            i = (i - 1) / 2;
+        }
     }
 }
 
@@ -97,7 +99,6 @@ void traverseCurrentLevel(struct Node *root, int level, void *func(int)) {
     }
     if (level == 1) {
         func(root->data);
-//        printf("%d ", root->data);
     } else if (level > 1) {
         traverseCurrentLevel(root->left, level - 1, func);
         traverseCurrentLevel(root->right, level - 1, func);
@@ -115,6 +116,7 @@ void *writeToFile(int number) {
     if (fp != NULL) {
         fprintf(fp, "%d ", number);
     }
+    return 0;
 }
 
 int main() {
@@ -130,16 +132,14 @@ int main() {
     // queue every read value to heapArray
     printf("Starting The Queue process...\n");
     clock_t begin = clock();
-    for (int i = 0; i < INPUT_COUNT; i++) {
-        queue(heapArray, values[i], i);
-    }
+    convert(heapArray, values);
     clock_t end = clock();
     double time_spent = (double) (end - begin) / CLOCKS_PER_SEC;
     printf("Finishing The Queue process...\n");
     printf("Queue process is done. Time spent %.9f\n", time_spent);
 
-//    printf("\nB=");
-//    printArray(heapArray);
+    //printf("\nB=");
+    //printArray(heapArray);
 
     // 3) Convert your array representation into a data structure with pointers.
     printf("Starting The Create Node process...\n");
